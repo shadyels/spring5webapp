@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,12 +17,15 @@ public class Author {
     private Long id;
 
     private String firstName;
-    private String book;
+    private String lastName;
 
     @ManyToMany(mappedBy = "authors")
-    private Set<Book> books;
+    private Set<Book> books = new HashSet<>();
 
     public Author() {
+    }
+
+    public Author(String firstName, String lastName) {
     }
 
     public Long getId() {
@@ -40,12 +44,12 @@ public class Author {
         this.firstName = firstName;
     }
 
-    public String getBook() {
-        return book;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setBook(String book) {
-        this.book = book;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Set<Book> getBooks() {
@@ -56,12 +60,14 @@ public class Author {
         this.books = books;
     }
 
+
+
     @Override
     public String toString() {
         return "Author{" +
             "id=" + id +
             ", firstName='" + firstName + '\'' +
-            ", book='" + book + '\'' +
+            ", lastName='" + lastName + '\'' +
             ", books=" + books +
             '}';
     }
